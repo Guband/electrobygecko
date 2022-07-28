@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout.html}"
+>
+<head>
+    <meta charset="UTF-8" />
+    <title>Liste des produits</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+    <section layout:fragment="content">
+        <div class="container mt-5">
+            <h1>Liste des produits</h1>
+            <a th:href="@{/admin/products/new}" class="btn btn-success mt-4">Ajouter un produit</a>
+            <table class="table table-hover mt-2">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Marque</th>
+                        <th>Prix</th>
+                        <th>Ajouté le</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product: ${products}">
+                        <th th:text="${product.id}"></th>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${#strings.abbreviate(product.description, 80)}"></td>
+                        <td th:text="${product.brand}"></td>
+                        <td th:text="${product.displayPrice}"></td>
+                        <td th:text="${#temporals.format(product.addedDate, 'dd/MM/yyyy')}"></td>
+                        <td>
+                            <a th:href="@{/admin/products/{id}(id=${product.id})}" class="btn btn-primary">Modifier</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger">Supprimer</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>

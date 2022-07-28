@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 @Entity
@@ -33,5 +34,11 @@ public class Product {
     @Override
     public String toString() {
         return String.format("Product( id: %d, name: %s, description: %s, brand: %s, price: %d)", this.id, this.name, this.description, this.brand, this.price);
+    }
+
+    public String displayPrice() {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
+        return String.format("%s €", decimalFormat.format(price / 100.));
     }
 }
