@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -17,9 +16,22 @@ public class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String description, brand;
+    private String name, description, brand;
 
     private int price;
 
     private LocalDate addedDate;
+
+    public Product(String name, String description, String brand, int price) {
+        this.name = name;
+        this.description = description;
+        this.brand = brand;
+        this.price = price;
+        this.addedDate = LocalDate.now();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Product( id: %d, name: %s, description: %s, brand: %s, price: %d)", this.id, this.name, this.description, this.brand, this.price);
+    }
 }

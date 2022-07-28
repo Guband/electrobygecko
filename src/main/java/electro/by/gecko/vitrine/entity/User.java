@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -21,6 +20,11 @@ public class User implements UserDetails {
     private String username;
 
     private String password;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -50,5 +54,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("User(id: %d, username: %s, password: %s)", this.id, this.username, this.password);
     }
 }
