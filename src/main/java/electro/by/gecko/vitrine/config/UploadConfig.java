@@ -14,10 +14,16 @@ public class UploadConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("/webjars/")
-                .resourceChain(false);
-        registry.setOrder(1);
+        if (!registry.hasMappingForPattern("/webjars/**")) {
+            registry.addResourceHandler("/webjars/**")
+                    .addResourceLocations("classpath:/META-INF/resources/webjars/")
+                    .resourceChain(false);
+        }
+        if (!registry.hasMappingForPattern("/**")) {
+            registry.addResourceHandler("/**")
+                    .addResourceLocations("classpath:/static/")
+                    .resourceChain(false);
+        }
         exposeDirectory("upload-dir", registry);
     }
 
