@@ -5,7 +5,7 @@ import electro.by.gecko.vitrine.entity.Product;
 public class Faker { // 10,000.00
     private static final String[] TYPE = {"Machine à laver", "Réfrigérateur", "Four", "Lave-vaisselle", "Aspirateur Roomba", "Grille-pain"};
     private static final String[][] IMAGES = {
-        { "images/machine_a_laver.jpg","images/machine_a_laver_avec_hublot.jpg","images/machine_a_laver_avec_hublot_2.jpg",},
+        { "images/machine_a_laver_sans_hublot.jpg","images/machine_a_laver_avec_hublot.jpg","images/machine_a_laver_avec_hublot_2.jpg",},
         { "images/refrigerateur.jpg","images/refrigerateur_glacons.jpg","images/refrigerateur_rouge.jpg",},
         { "images/four.jpg","images/four.jpg","images/four.jpg",},
         { "images/lave_vaisselle.jpg", "images/lave_vaisselle_2.jpg", "images/lave_vaisselle_industriel.jpg", },
