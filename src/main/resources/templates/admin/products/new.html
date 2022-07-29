@@ -15,7 +15,7 @@
         <h1>Ajouter un produit</h1>
         <form
                 th:object="${product}"
-                th:action="@{/admin/products/save}"
+                th:action="@{/admin/products}"
                 method="POST"
         >
             <div class="mb-3 row">
@@ -35,9 +35,16 @@
             <div class="mb-3 row">
                 <label for="price" class="col-sm-2 col-form-label">Prix</label>
                 <div class="col-sm-10">
-                    <input th:field="*{price}" id="price" type="number" value="" step="100" class="form-control">
+                    <input th:field="*{price}" id="price" type="number" class="form-control">
                 </div>
                 <p th:if="${#fields.hasErrors('price')}" th:text="${#strings.listJoin(#fields.errors('price'), ', ')}"></p>
+            </div>
+            <div class="mb-3 row">
+                <label for="image" class="col-sm-2 col-form-label">Image</label>
+                <div class="col-sm-10">
+                    <input th:field="*{image}" id="image" type="text" class="form-control">
+                </div>
+                <p th:if="${#fields.hasErrors('image')}" th:text="${#strings.listJoin(#fields.errors('image'), ', ')}"></p>
             </div>
             <div class="mb-3 row">
                 <label for="description" class="col-sm-2 col-form-label">Description</label>

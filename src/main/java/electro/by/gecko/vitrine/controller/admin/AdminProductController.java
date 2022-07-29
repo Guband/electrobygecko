@@ -43,14 +43,14 @@ public class AdminProductController {
     }
 
     @GetMapping(path = "/new")
-    public String formNew(Model model) {
+    public String formCreate(Model model) {
         model.addAttribute("product", new Product());
 
         return "admin/products/new";
     }
 
-    @PostMapping(path = "/save")
-    public String save(Product product) {
+    @PostMapping
+    public String doCreate(Product product) {
         product.setAddedDate(LocalDate.now());
         productDAO.save(product);
 
