@@ -1,7 +1,7 @@
 package electro.by.gecko.vitrine.controller.admin;
 
 import electro.by.gecko.vitrine.entity.Product;
-import electro.by.gecko.vitrine.repository.ProductDAO;
+import electro.by.gecko.vitrine.service.product.ProductDAOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,17 +16,17 @@ import java.util.Random;
 @RequestMapping(path = "/admin/products")
 public class AdminProductController {
 
-    private final ProductDAO productDAO;
+    private final ProductDAOService productDAOService;
 
     @Autowired
-    public AdminProductController(ProductDAO productDAO) {
-        this.productDAO = productDAO;
+    public AdminProductController(ProductDAOService productDAOService) {
+        this.productDAOService = productDAOService;
     }
 
     @GetMapping(path = "/list")
     public String list(Model model) {
 
-        List<Product> productsUnique = (ArrayList<Product>) productDAO.findAll();
+        List<Product> productsUnique = (ArrayList<Product>) productDAOService.findAll();
 
         ArrayList<Product> products = new ArrayList<>();
         Random random = new Random();
@@ -52,7 +52,7 @@ public class AdminProductController {
     @PostMapping
     public String doCreate(Product product) {
         product.setAddedDate(LocalDate.now());
-        productDAO.save(product);
+        productDAOService.save(product);
 
         return "redirect:/admin/products/list";
     }
