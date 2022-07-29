@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layout.html}"
+>
+<head>
+    <meta charset="UTF-8" />
+    <title>Éditer un produit</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="container mt-5">
+        <h1>Ajouter un produit</h1>
+        <form
+                th:object="${product}"
+                th:action="@{/admin/products/save}"
+                method="POST"
+        >
+            <div class="mb-3 row">
+                <label for="name" class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
+                    <input th:field="*{name}" id="name" type="text" class="form-control">
+                </div>
+                <p th:if="${#fields.hasErrors('name')}" th:text="${#strings.listJoin(#fields.errors('name'), ', ')}"></p>
+            </div>
+            <div class="mb-3 row">
+                <label for="brand" class="col-sm-2 col-form-label">Marque</label>
+                <div class="col-sm-10">
+                    <input th:field="*{brand}" id="brand" type="text" class="form-control">
+                </div>
+                <p th:if="${#fields.hasErrors('brand')}" th:text="${#strings.listJoin(#fields.errors('brand'), ', ')}"></p>
+            </div>
+            <div class="mb-3 row">
+                <label for="price" class="col-sm-2 col-form-label">Prix</label>
+                <div class="col-sm-10">
+                    <input th:field="*{price}" id="price" type="number" value="" step="100" class="form-control">
+                </div>
+                <p th:if="${#fields.hasErrors('price')}" th:text="${#strings.listJoin(#fields.errors('price'), ', ')}"></p>
+            </div>
+            <div class="mb-3 row">
+                <label for="description" class="col-sm-2 col-form-label">Description</label>
+                <div class="col-sm-10">
+                    <textarea th:field="*{description}" class="form-control" id="description" rows="3"></textarea>
+                </div>
+                <p th:if="${#fields.hasErrors('description')}" th:text="${#strings.listJoin(#fields.errors('description'), ', ')}"></p>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Valider</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

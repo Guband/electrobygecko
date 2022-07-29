@@ -5,21 +5,21 @@ import electro.by.gecko.vitrine.repository.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 @Controller
 @RequestMapping(path = "/admin/products")
-public class ProductController {
+public class AdminProductController {
 
     private final ProductDAO productDAO;
 
     @Autowired
-    public ProductController(ProductDAO productDAO) {
+    public AdminProductController(ProductDAO productDAO) {
         this.productDAO = productDAO;
     }
 
@@ -40,5 +40,20 @@ public class ProductController {
         model.addAttribute("products", products);
 
         return "admin/products/list";
+    }
+
+    @GetMapping(path = "/new")
+    public String formNew(Model model) {
+        model.addAttribute("product", new Product());
+
+        return "admin/products/new";
+    }
+
+    @PostMapping(path = "/save")
+    public String save(Product product) {
+        product.setAddedDate(LocalDate.now());
+        productDAO.save(product);
+
+        return "redirect:/admin/products/list";
     }
 }

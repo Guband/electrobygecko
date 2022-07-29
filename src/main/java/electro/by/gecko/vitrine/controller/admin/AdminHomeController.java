@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(path = "/admin")
-public class HomeController {
+public class AdminHomeController {
 
     @GetMapping
     public String home() {
