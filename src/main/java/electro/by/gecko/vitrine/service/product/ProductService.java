@@ -5,16 +5,14 @@ import electro.by.gecko.vitrine.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import javax.persistence.EntityNotFoundException;
 
 public interface ProductService {
-    Product findById(Long id)throws EntityNotFoundException;
+    Product findById(Long id);
     Product save(Product product);
-    void deleteById(Long id) throws EntityNotFoundException;
+    void deleteById(Long id);
 
     Iterable<Product> findAll();
 
-    Iterable<Product> findByFilter(String name, String description, int minPrice, int maxPrice, String brand, Pageable page);
+    Page<Product> findByFilter(String search, int minPrice, int maxPrice, String brand, Pageable page);
 
-    Page<Product> findPage(Pageable page);
 }
