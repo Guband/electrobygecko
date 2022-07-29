@@ -60,6 +60,7 @@
                 <p th:if="${#fields.hasErrors('description')}" th:text="${#strings.listJoin(#fields.errors('description'), ', ')}"></p>
             </div>
             <input type="hidden" th:field="*{addedDate}">
+            <input type="hidden" th:field="*{image}">
             <button type="submit" class="btn btn-primary mb-3">Valider</button>
         </form>
     </div>

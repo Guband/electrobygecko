@@ -19,6 +19,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nom</th>
+                        <th>Aperçu</th>
                         <th>Description</th>
                         <th>Marque</th>
                         <th>Prix</th>
@@ -31,6 +32,9 @@
                     <tr th:each="product: ${products}">
                         <th th:text="${product.id}"></th>
                         <td th:text="${product.name}"></td>
+                        <td>
+                            <img th:src="@{/{url}(url=${product.image})}" th:alt="${product.name}" width="50" height="50" />
+                        </td>
                         <td th:text="${#strings.abbreviate(product.description, 80)}"></td>
                         <td th:text="${product.brand}"></td>
                         <td th:text="${product.displayPrice}"></td>
