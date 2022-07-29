@@ -61,4 +61,11 @@ public class AdminProductController {
 
         return "redirect:/admin/products/list";
     }
+
+    @GetMapping(path = "/{id}/delete")
+    public String delete(@PathVariable Long id) {
+        productDAOService.deleteById(id);
+
+        return "redirect:/admin/products/list";
+    }
 }

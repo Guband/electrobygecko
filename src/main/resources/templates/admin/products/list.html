@@ -39,7 +39,7 @@
                             <a th:href="@{/admin/products/{id}(id=${product.id})}" class="btn btn-primary">Modifier</a>
                         </td>
                         <td>
-                            <button class="btn btn-danger">Supprimer</button>
+                            <a th:href="@{/admin/products/{id}/delete(id=${product.id})}" class="btn btn-danger">🗑️</a>
                         </td>
                     </tr>
                 </tbody>
