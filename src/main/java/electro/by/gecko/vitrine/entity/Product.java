@@ -17,17 +17,18 @@ public class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String name, description, brand;
+    private String name, description, brand, image;
 
     private int price;
 
     private LocalDate addedDate;
 
-    public Product(String name, String description, String brand, int price) {
+    public Product(String name, String description, String brand, int price, String image) {
         this.name = name;
         this.description = description;
         this.brand = brand;
         this.price = price;
+        this.image = image;
         this.addedDate = LocalDate.now();
     }
 
