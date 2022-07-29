@@ -1,0 +1,50 @@
+body{
+  background-color: #e5eff8;
+}
+
+#nav{
+  background-color: blueviolet;
+}
+
+#filters{
+  top: 55px;
+  background-color: rgba(0,0,0,0.8);
+  padding: 8px;
+}
+
+#logoNav{
+  width: 45px;
+}
+
+.nav-link, .navbar-brand{
+  color: white!important;
+}
+
+.btn-purple{
+  background-color: blueviolet!important;
+  color: white!important;
+}
+
+#banniere-produit{
+  height: 350px;
+  width: 100%;
+}
+
+blockquote{
+  box-shadow: inset 0px 0px 2px 3px rgba(0, 0, 0, 0.9);
+}
+
+.description{
+  line-height: 25px;
+}
+
+.carousel img{
+  max-height: 70vh;
+  object-fit: cover;
+  object-position: 0% 15%;
+}
+.carousel-caption{
+  text-align: left!important;
+}
+
+#map { height: 400px; }
