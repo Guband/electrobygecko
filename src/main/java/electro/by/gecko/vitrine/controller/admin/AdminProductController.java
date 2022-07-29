@@ -8,9 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 @Controller
 @RequestMapping(path = "/admin/products")
@@ -26,18 +23,7 @@ public class AdminProductController {
     @GetMapping(path = "/list")
     public String list(Model model) {
 
-        List<Product> productsUnique = (ArrayList<Product>) productDAOService.findAll();
-
-        ArrayList<Product> products = new ArrayList<>();
-        Random random = new Random();
-
-        for (int i = 1; i < 150; i++) {
-            int randomIndex = random.nextInt(productsUnique.size());
-
-            products.add(productsUnique.get(randomIndex));
-        }
-
-        model.addAttribute("products", products);
+        model.addAttribute("products", productDAOService.findAll());
 
         return "admin/products/list";
     }
@@ -49,9 +35,19 @@ public class AdminProductController {
         return "admin/products/new";
     }
 
+    @GetMapping(path = "/{id}")
+    public String formEdit(Model model, @PathVariable Long id) {
+        model.addAttribute("product", productDAOService.findById(id));
+
+        return "admin/products/edit";
+    }
+
     @PostMapping
-    public String doCreate(Product product) {
-        product.setAddedDate(LocalDate.now());
+    public String save(Product product) {
+        if (product.getId() == null) {
+            product.setAddedDate(LocalDate.now());
+        }
+
         productDAOService.save(product);
 
         return "redirect:/admin/products/list";

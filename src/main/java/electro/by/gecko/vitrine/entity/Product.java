@@ -15,15 +15,15 @@ import java.time.LocalDate;
 @Setter
 public class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name, description, brand, image;
 
-    private int price;
+    private Integer price;
 
     private LocalDate addedDate;
 
-    public Product(String name, String description, String brand, int price, String image) {
+    public Product(String name, String description, String brand, Integer price, String image) {
         this.name = name;
         this.description = description;
         this.brand = brand;
