@@ -1,6 +1,6 @@
 package electro.by.gecko.vitrine.config;
 
-import electro.by.gecko.vitrine.service.UserDetailsServiceImpl;
+import electro.by.gecko.vitrine.service.user.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;

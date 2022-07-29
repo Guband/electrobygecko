@@ -2,7 +2,7 @@ package electro.by.gecko.vitrine;
 
 import electro.by.gecko.vitrine.entity.Product;
 import electro.by.gecko.vitrine.repository.ProductDAO;
-import electro.by.gecko.vitrine.service.UserService;
+import electro.by.gecko.vitrine.service.user.UserService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

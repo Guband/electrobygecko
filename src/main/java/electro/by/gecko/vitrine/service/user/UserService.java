@@ -1,4 +1,4 @@
-package electro.by.gecko.vitrine.service;
+package electro.by.gecko.vitrine.service.user;
 
 import electro.by.gecko.vitrine.entity.User;
 import electro.by.gecko.vitrine.repository.UserDAO;
