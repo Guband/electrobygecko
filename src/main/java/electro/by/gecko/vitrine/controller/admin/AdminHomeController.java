@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = "/admin")
 public class AdminHomeController {
 
+    /**
+     * Index of Back-office
+     * @return A redirection to Product List
+     */
     @GetMapping
     public String home() {
         return "redirect:/admin/products/list";

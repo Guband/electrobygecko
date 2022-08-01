@@ -12,6 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 
+/**
+ * Products Controller for Administration purpose
+ * CRUD Operation will be given to make the back office almost complete
+ */
 @Controller
 @RequestMapping(path = "/admin/products")
 public class AdminProductController {
@@ -26,6 +30,13 @@ public class AdminProductController {
     }
 
 
+    /**
+     * Listing of all products
+     * @param model
+     * @param page
+     * @param size
+     * @return Thymeleaf page for our listing
+     */
     @GetMapping(path = "/list")
     public String list(Model model,
                        @RequestParam(name = "page", defaultValue = "0") int page,
@@ -41,6 +52,12 @@ public class AdminProductController {
         return "admin/products/list";
     }
 
+    /**
+     * Route for adding product to the database (only the form)
+     * @param model
+     * @return The form for adding product
+     */
+
     @GetMapping(path = "/new")
     public String formCreate(Model model) {
         model.addAttribute("product", new Product());
@@ -48,6 +65,12 @@ public class AdminProductController {
         return "admin/products/new";
     }
 
+    /**
+     * Show ONE Product
+     * @param model
+     * @param id
+     * @return Thymeleaf page for the given Product
+     */
     @GetMapping(path = "/{id}")
     public String formEdit(Model model, @PathVariable Long id) {
         model.addAttribute("product", productDAOService.findById(id));
@@ -55,6 +78,12 @@ public class AdminProductController {
         return "admin/products/edit";
     }
 
+    /**
+     * Route for saving ONE product
+     * @param product
+     * @param image
+     * @return redirection to the list
+     */
     @PostMapping
     public String save(Product product,@RequestParam("file") MultipartFile image) {
         if (product.getId() == null) {
@@ -71,6 +100,11 @@ public class AdminProductController {
         return "redirect:/admin/products/list";
     }
 
+    /**
+     * Delete a given Product
+     * @param id
+     * @return redirection to the list
+     */
     @GetMapping(path = "/{id}/delete")
     public String delete(@PathVariable Long id) {
         productDAOService.deleteById(id);
