@@ -78,8 +78,7 @@ function Produits() {
                 </div>
                 <div>
                     <select onChange={handleBrand} className="form-select" aria-label="Default select example">
-                        <option value="">Marque</option>
-                        <option value="">Tous</option>
+                        <option value="">Marques Tous</option>
                         <option value="Bosh">Bosh</option>
                         <option value="Whirlpool">Whirlpool</option>
                         <option value="Samsung">Samsung</option>
