@@ -11,7 +11,7 @@ Ce projet à pour but de mettre en pratique les connaissances acquises durant ce
 Le projet consiste à réaliser :
 
 - Un site vitrine en **Java EE** permettant de gérer un catalogue de produit d'électroménager;
-- L'application doit aussi offrir des filtres de recherche sur cesdîts produits.
+- L'application doit aussi offrir des filtres de recherche sur ces dîts produits.
 - Les caractéristiques des produits sont à considérer et devront influencer entre autres la conception de la base de données et des services applicatifs associés;
 - Une interface d'administration protégée par login mot de passe doit permettre l'ajout, la suppression et la modification des produits.
 
