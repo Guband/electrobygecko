@@ -21,7 +21,7 @@ function Produit() {
 
                 <div className="">
                     <div className="row text-center">
-                        <div className="col-7 p-0"><img className="img-fluid" src={"http://localhost:3000/"+produit.image} alt="" />
+                        <div className="col-7 p-0"><img className="img-fluid" src={"/"+produit.image} alt="" />
                         </div>
                         <div className="col p-0">
                             <div className="h1 p-3 fw-bold bg-dark text-white">{produit.name} <span
