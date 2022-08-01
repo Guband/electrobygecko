@@ -8,6 +8,13 @@
     <meta charset="UTF-8" />
     <title>Liste des produits</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <script>
+        let confirmDelete = (productId) => {
+            if (confirm(`Êtes-vous de vouloir supprimer le produit ${productId} ?`)) {
+                window.location = `[[@{/admin/products/${productId}/delete}]]`;
+            }
+        };
+    </script>
 </head>
 <body>
     <section layout:fragment="content">
@@ -43,7 +50,7 @@
                             <a th:href="@{/admin/products/{id}(id=${product.id})}" class="btn btn-primary">Modifier</a>
                         </td>
                         <td>
-                            <a th:href="@{/admin/products/{id}/delete(id=${product.id})}" class="btn btn-danger">🗑️</a>
+                            <button th:attr="onclick=|confirmDelete(${product.id})|" class="btn btn-danger delete-button">🗑️</button>
                         </td>
                     </tr>
                 </tbody>
