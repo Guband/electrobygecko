@@ -14,6 +14,6 @@ public class AdminHomeController {
      */
     @GetMapping
     public String home() {
-        return "redirect:/admin/products";
+        return "forward:/admin/products";
     }
 }
