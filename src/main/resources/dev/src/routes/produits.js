@@ -6,7 +6,7 @@ function Produits() {
 
     const [produits, setProduits] = useState([])
     const [totalElements, setTotalElements] = useState("")
-    const [totalPages, setTotalPages] = useState("")
+    const [totalPages, setTotalPages] = useState(0)
     const [numberPage, setNumberPage] = useState("")
     const [search, setSearch] = useState("")
     const [brand, setBrand] = useState("")
@@ -16,21 +16,25 @@ function Produits() {
     const handleSearch = (e) => {
         setSearch(e.target.value)
         setProduits([])
+        setNumberPage(0)
 
     }
     const handleBrand = (e) => {
         setBrand(e.target.value)
         setProduits([])
+        setNumberPage(0)
 
     }
     const handlePriceMin = (e) => {
         setPriceMin(e.target.value*100)
         setProduits([])
+        setNumberPage(0)
 
     }
     const handlePriceMax = (e) => {
         setPriceMax(e.target.value*100)
         setProduits([])
+        setNumberPage(0)
 
     }
     const handlePage = () => {
@@ -50,13 +54,18 @@ function Produits() {
                     setNumberPage(items.page.number)
                     setTotalPages(items.page.totalPages)
                 } else {
-                    setProduits("undefined")
+                    setProduits([])
+                    setTotalElements(0)
+                    setNumberPage("")
+                    setTotalPages(0)
                 }
 
             })
     }
 
     useEffect(() => {
+        if (priceMax === 0) setPriceMax("")
+        if (priceMin === 0) setPriceMin("")
         setList(search, priceMin, priceMax, brand, numberPage)
     }, [search, priceMax, priceMin, brand, numberPage])
 
@@ -69,8 +78,7 @@ function Produits() {
                 </div>
                 <div>
                     <select onChange={handleBrand} className="form-select" aria-label="Default select example">
-                        <option value="">Marque</option>
-                        <option value="">Tous</option>
+                        <option value="">Marques Tous</option>
                         <option value="Bosh">Bosh</option>
                         <option value="Whirlpool">Whirlpool</option>
                         <option value="Samsung">Samsung</option>
@@ -84,7 +92,7 @@ function Produits() {
                 </div>
             </div>
             <div className="mt-5 row g-sm-2 g-md-2 gx-xs-1">
-                {produits !== "undefined" && <div className="h5">{totalElements} produits trouvés</div>}
+                {<div className="h5">{totalElements} produits trouvés</div>}
                 {produits !== "undefined" ? produits.map(p=>{
                     return <Card key={p.id}
                                       idProduit={p.id}
@@ -94,9 +102,7 @@ function Produits() {
                                       image={p.image} />
 
                 }) : <div className="h3 text-center">Aucun résultat</div>}
-                {console.log("nummmm " + (Number.parseInt(numberPage)+1))}
-                {console.log("total " + (Number.parseInt(numberPage)+1) + Number.parseInt(totalPages))}
-                {(produits !== "undefined" || (Number.parseInt(numberPage)+1) !== Number.parseInt(totalPages)) ? <div onClick={handlePage} className="m-4 btn btn-purple">Voir plus</div> : <div>plus rien</div>}
+                {(( produits.length == 0) ||  ((parseInt(numberPage)+1) == parseInt(totalPages))) ? <div></div> : <div onClick={handlePage} className="m-4 btn btn-purple">Voir plus</div>}
             </div>
         </div>
     )
