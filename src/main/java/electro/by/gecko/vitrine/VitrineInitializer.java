@@ -30,7 +30,7 @@ public class VitrineInitializer implements CommandLineRunner {
             productDAOService.save(Faker.createRandomProduct());
         }
 
-        userService.findAll().forEach( (user -> logger.info("{}", user)) );
-        productDAOService.findAll().forEach( (product -> logger.info("{}", product)) );
+        userService.findAll().forEach((user -> logger.info("{}", user)));
+        productDAOService.findAll().forEach((product -> logger.info("{}", product)));
     }
 }
