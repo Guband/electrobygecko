@@ -24,7 +24,7 @@ public class UploadConfig implements WebMvcConfigurer {
                     .addResourceLocations("classpath:/static/")
                     .resourceChain(false);
         }
-        exposeDirectory("upload-dir", registry);
+        registry.addResourceHandler("/upload-dir/**").addResourceLocations("file:upload-dir/");
     }
 
     private void exposeDirectory(String dirName, ResourceHandlerRegistry registry) {
