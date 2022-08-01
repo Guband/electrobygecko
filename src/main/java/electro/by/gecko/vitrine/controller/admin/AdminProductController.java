@@ -37,7 +37,7 @@ public class AdminProductController {
      * @param size
      * @return Thymeleaf page for our listing
      */
-    @GetMapping(path = "/list")
+    @GetMapping
     public String list(Model model,
                        @RequestParam(name = "page", defaultValue = "0") int page,
                        @RequestParam(name = "size", defaultValue = "50") int size) {
@@ -97,7 +97,7 @@ public class AdminProductController {
         }
         productDAOService.save(product);
 
-        return "redirect:/admin/products/list";
+        return "redirect:/admin/products";
     }
 
     /**
@@ -109,6 +109,6 @@ public class AdminProductController {
     public String delete(@PathVariable Long id) {
         productDAOService.deleteById(id);
 
-        return "redirect:/admin/products/list";
+        return "redirect:/admin/products";
     }
 }
