@@ -3,6 +3,8 @@ package electro.by.gecko.vitrine.controller.admin;
 import electro.by.gecko.vitrine.entity.Product;
 import electro.by.gecko.vitrine.service.file.StorageService;
 import electro.by.gecko.vitrine.service.product.ProductService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +27,16 @@ public class AdminProductController {
 
 
     @GetMapping(path = "/list")
-    public String list(Model model) {
+    public String list(Model model,
+                       @RequestParam(name = "page", defaultValue = "0") int page,
+                       @RequestParam(name = "size", defaultValue = "50") int size) {
 
-        model.addAttribute("products", productDAOService.findAll());
+        Page<Product> productPages = productDAOService.findAll(PageRequest.of(page, size));
+
+        int[] pages = new int[productPages.getTotalPages()];
+        model.addAttribute("products", productPages.getContent());
+        model.addAttribute("pages", pages);
+        model.addAttribute("currentPage", page);
 
         return "admin/products/list";
     }

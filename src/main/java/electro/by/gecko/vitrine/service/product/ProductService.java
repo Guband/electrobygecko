@@ -15,4 +15,6 @@ public interface ProductService {
 
     Page<Product> findByFilter(String search, int minPrice, int maxPrice, String brand, Pageable page);
 
+    Page<Product> findAll(Pageable pageable);
+
 }

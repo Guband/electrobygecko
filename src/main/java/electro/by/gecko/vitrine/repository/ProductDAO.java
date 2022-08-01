@@ -16,4 +16,5 @@ public interface ProductDAO extends PagingAndSortingRepository<Product, Long> {
             "UPPER(p.brand) LIKE CONCAT('%', UPPER(?4),'%')")
     Page<Product> findFilter(String search, int minPrice, int maxPrice, String brand, Pageable pageable);
 
+    Page<Product> findAll(Pageable pageable);
 }

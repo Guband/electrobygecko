@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class ProductDAOService implements ProductService{
+public class ProductDAOService implements ProductService {
     private final ProductDAO productDAO;
 
     public ProductDAOService(ProductDAO productDAO) {
@@ -39,5 +39,10 @@ public class ProductDAOService implements ProductService{
     @Override
     public Page<Product> findByFilter(String search, int minPrice, int maxPrice, String brand, Pageable page) {
         return productDAO.findFilter(search, minPrice, maxPrice, brand, page);
+    }
+
+    @Override
+    public Page<Product> findAll(Pageable pageable) {
+        return productDAO.findAll(pageable);
     }
 }
